@@ -1,0 +1,15 @@
+@import url('../plugins/fontawesome-free/css/all.min.css');
+@import url('../icons/ionicons-2.0.1/css/ionicons.min.css');
+@import url('../css/adminlte.min.css');
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+  
+  font-style: normal; 
+  font-weight: 300;
+}
+
+body {
+  font-family: 'SourceSansPro';
+}
