@@ -21,3 +21,4 @@
 import './routes/auth'
 import './routes/admin'
 import './routes/dashboard'
+import './routes/members'
