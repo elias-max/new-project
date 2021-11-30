@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, computed } from '@ioc:Adonis/Lucid/Orm'
 import Admin from './Admin'
 
 export default class Member extends BaseModel {
@@ -26,4 +26,15 @@ export default class Member extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+  
+  public async getAdmin(){
+    const admin =  await Admin.findOrFail(this.adminId)
+    return admin.name
+  }
+  
+  @computed()
+  public fullname(){
+    return `${this.firstName} ${this.lastName}`
+  }
+
 }

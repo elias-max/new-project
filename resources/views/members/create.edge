@@ -1,0 +1,19 @@
+@layout('layouts/main')
+@set('title', 'Members')
+@set('breadcrumbMainTitle', 'Members')
+@set('breadcrumbSubTitle', 'New Member')
+
+@section('body')
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Add New Member</h3>
+        </div>
+        <form action="{{ route('members.store') }}" method="POST">
+          @include('members/form')
+        </form>
+      </div>
+    </div>
+  </div>
+@end

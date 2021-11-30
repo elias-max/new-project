@@ -1,0 +1,40 @@
+  {{ csrfField() }}
+  <div class="card-body">
+    <div class="form-group">
+      <label for="name">FirstName</label>
+      <input type="text" class="form-control"
+        id="firstName" placeholder="e.g Elias" name="firstName" autocomplete="off"
+        data-value="{{ member ? member.firstName : null }}" 
+        data-flash-value="{{ flashMessages.get('firstName', '') || ''}}" 
+        data-has-error="{{ flashMessages.has('errors.firstName') }}"
+      >
+      @if(flashMessages.has('errors.firstName'))
+        <div class="invalid-feedback"> {{ flashMessages.get('errors.firstName') }} </div>
+      @end
+    </div>
+
+    <div class="form-group">
+      <label for="name">Last Name</label>
+      <input type="text" class="form-control"
+        id="lastName" placeholder="e.g John" name="lastName" autocomplete="off"
+        data-value="{{ member ? member.lastName : null }}"
+        data-flash-value="{{ flashMessages.get('lastName', '') || ''}}"
+        data-has-error="{{ flashMessages.has('errors.lastName') }}"
+      >
+      @if(flashMessages.has('errors.lastName'))
+        <div class="invalid-feedback"> {{ flashMessages.get('errors.lastName') }} </div>
+      @end
+    </div>
+
+    <div class="form-group">
+      <label for="name">phoneNumber</label>
+      <input type="text" class="form-control"
+        id="phoneNumber" placeholder="e.g 0788900900" name="phoneNumber" autocomplete="off"
+      >
+    </div>
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
