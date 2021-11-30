@@ -19,7 +19,7 @@ export default class Member extends BaseModel {
   public adminId: number
 
   @column()
-  public phoneNumber: string
+  public phonenumber: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

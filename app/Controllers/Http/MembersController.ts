@@ -22,7 +22,7 @@ export default class MembersController {
         firstName: params.firstName,
         lastName: params.lastName,
         adminId: currentAdmin.id,
-        phoneNumber: params.phoneNumber
+        phonenumber: params.phonenumber
       })
     }catch{
       response.redirect().back() // NEED TO DO MORE HERE
