@@ -2,18 +2,18 @@
   "entrypoints": {
     "app": {
       "css": [
-        "http://localhost:8080/assets/app.css"
+        "/assets/app.805dd2b0.css"
       ],
       "js": [
-        "http://localhost:8080/assets/app.js"
+        "/assets/app.a7bb1ebc.js"
       ]
     },
     "login": {
       "css": [
-        "http://localhost:8080/assets/login.css"
+        "/assets/login.8a823f58.css"
       ],
       "js": [
-        "http://localhost:8080/assets/login.js"
+        "/assets/login.8b838df6.js"
       ]
     }
   }

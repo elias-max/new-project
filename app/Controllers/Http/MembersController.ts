@@ -51,7 +51,7 @@ export default class MembersController {
       await member.merge({
         firstName: params.firstName,
         lastName: params.lastName,
-        phoneNumber: params.phoneNumber
+        phonenumber: params.phonenumber
       }).save()
     }catch(error){
       response.redirect().back() // NEED TO DO MORE HERE
