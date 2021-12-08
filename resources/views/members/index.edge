@@ -50,6 +50,10 @@
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/members/{{ member.id }}">View</a>
                         <a class="dropdown-item" href="/members/{{ member.id }}/edit">Edit</a>
+                        <form action="/members/{{ member.id }}?_method=DELETE" method="POST">
+                          {{ csrfField() }}
+                           <button type="submit" class="btn btn-danger d-block float-left">Delete</button>
+                        </form>
                       </div>
                     </div>
                   </td>
