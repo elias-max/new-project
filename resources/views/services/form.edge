@@ -1,0 +1,60 @@
+{{ csrfField() }}
+<div class="card-body">
+  <div class="form-group">
+    <label for="name"> Service Name</label>
+    <input type="text" class="form-control"
+      id="serviceName" placeholder="e.g morning prayer" name="serviceName" autocomplete="off"
+      data-value="{{ service ? service.serviceName : null }}" 
+      data-flash-value="{{ flashMessages.get('serviceName', '') || ''}}" 
+      data-has-error="{{ flashMessages.has('errors.serviceName') }}"
+    >
+    @if(flashMessages.has('errors.serviceName'))
+      <div class="invalid-feedback"> {{ flashMessages.get('errors.serviceName') }} </div>
+    @end
+  </div>
+
+  <div class="form-group">
+    <label for="name">Duration</label>
+    <input type="time" class="form-control"
+    <input type="text" class="form-control"
+      id="serviceDuration" placeholder="e.g 8:30" name="serviceDuration" autocomplete="off"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="name">Location</label>
+    <input type="text" class="form-control"
+      id=" serviceLocation" placeholder="e.g mlowa" name="serviceLocation" autocomplete="off"
+      data-value="{{ service ? service. servicelocation : null }}"
+      data-flash-value="{{ flashMessages.get('serviceLocation', '') || ''}}"
+      data-has-error="{{ flashMessages.has('errors.serviceLocation') }}"
+    >
+    @if(flashMessages.has('errors.serviceLocation'))
+      <div class="invalid-feedback"> {{ flashMessages.get('errors.serviceLocation') }} </div>
+    @end
+  </div>
+</div>
+<!-- /.card-body -->
+
+<div class="card-footer">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
