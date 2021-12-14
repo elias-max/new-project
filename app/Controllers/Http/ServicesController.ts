@@ -15,11 +15,11 @@ export default class ServicesController {
     await request.validate(ServiceValidator)
     const params = request.body()
 
-    const currentAdmin = auth.use('web').user!
+    const currentAdmin = auth.use('web').user! 
     
     try{
       await Service.create({
-        serviceName: params.seviceName,
+        serviceName: params.serviceName,
         serviceLocation: params.serviceLocation,
         serviceDuration: params.serviceDuration,
         adminId: currentAdmin.id
@@ -37,9 +37,37 @@ export default class ServicesController {
     return view.render('services/show', { service: service })
   }
 
-  public async edit({}: HttpContextContract) {}
+  public async edit({view,request}) {
+    const service = await Service.findOrFail(request.param('id') )
+    return view.render('services/edit', { 
+      service: service})
+  }
 
-  public async update({}: HttpContextContract) {}
+  public async update({response,request}) {
+    await request.validate(ServiceValidator)
+    const params = request.body()
+    const service = await Service.findOrFail(request.param('id'))
 
-  public async destroy({}: HttpContextContract) {}
-}
+    try{
+      await service.merge({
+        serviceName: params.serviceName,
+        serviceLocation: params.serviceLocation,
+        serviceDuration: params.serviceDuration,
+      }).save()
+    }catch  (error) {
+      console.log(error)
+      response.redirect().back() // NEED TO DO MORE HERE
+    }
+
+    response.redirect().toRoute('ServicesController.index')
+  }
+  public async destroy({ response, session, params }) {
+    const service = await Service.find(params.id)
+    await service?.delete()
+
+    session.flash({ message: 'Service has been removed' })
+    return response.redirect('/services')
+  }
+  
+  }
+

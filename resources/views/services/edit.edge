@@ -1,0 +1,18 @@
+@layout('layouts/main')
+@set('title', ' Services')
+@set('breadcrumbMainTitle', ' Services')
+@set('breadcrumbSubTitle', 'Edit  Service')
+@section('body')
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Edit Service</h3>
+        </div>
+        <form action="/services/{{ service.id }}?_method=PATCH" method="POST">
+          @include('services/form')
+        </form>
+      </div>
+    </div>
+  </div>
+@end

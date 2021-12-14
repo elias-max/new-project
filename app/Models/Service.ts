@@ -27,5 +27,16 @@ export default class Service extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+public async getAdmin(){
+  const admin =  await Admin.findOrFail(this.adminId)
+  return admin.name
+}
+
+
+@computed()
+  public fullservice(){
+    return `${this. serviceName} ${this.serviceDuration}`
+  }
 }
 

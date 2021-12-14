@@ -1,0 +1,65 @@
+@layout('layouts/main')
+@set('title', 'Services')
+@set('breadcrumbMainTitle', 'Services')
+@set('breadcrumbSubTitle', 'View')
+
+@section('body')
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body">
+          <a href="/members" class="btn btn-primary">All Services</a>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ service.fullservice() }}</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>SN</th>
+                <th>Service Name </th>
+                <th>Duration</th>
+                <th>Location</th>
+                <th>Added By</th>
+                <th style="width: 40px">Label</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>{{ service.id }}</td>
+                  <td>{{ service.serviceName }}</td>
+                  <td>{{ service.serviceDuration }}</td>
+                  <td>{{ service.serviceLocation }}</td>
+                  <td>{{ await service.getAdmin() || 'Not Set' }}</td>
+                  <td>
+                    <div class="dropdown">
+                      <a class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/services/{{ service.id }}/edit">Edit</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+
+    </div>
+  </div>
+@end

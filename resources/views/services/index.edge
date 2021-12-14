@@ -31,19 +31,27 @@
               <td>{{ service.serviceLocation}}</td>
               <td>{{ service.admin.name || 'Not Set' }}</td>
               <td>
-            <td>
+                <div class="dropdown">
+                  <a class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/services/{{ service.id }}">View</a>
+                    <a class="dropdown-item" href="/services/{{ service.id }}/edit">Edit</a>
+                <form action="/services/{{ service.id }}?_method=DELETE" method="POST">
+                      {{ csrfField() }}
               <button class="button is-danger is-outlined">
                 <span>DELETE</span>
                 <span class="icon is-small">
                   <i class="fa fa-times" aria-hidden="true"></i>
                 </span>
               </button>
-            </td>
+                    </form>
+                  </div>
+                </div>
+              </td>
           </tr>
-        @else
-          <tr>
-            <td colspan="3" class="has-text-centered">No task created yet!</td>
-          </tr>
+  </div>
         @endeach
       </tbody>
     </table>
