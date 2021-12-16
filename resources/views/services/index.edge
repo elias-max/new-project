@@ -13,7 +13,7 @@
     <table class="table is-bordered is-striped is-narrow is-fullwidth">
       <thead>
         <tr>
-          <th>SN</th>
+          <th>#</th>
           <th>Service Name </th>
           <th>Duration</th>
           <th>Location</th>
@@ -37,14 +37,11 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/services/{{ service.id }}">View</a>
-                    <a class="dropdown-item" href="/services/{{ service.id }}/edit">Edit</a>
+                    <a class="dropdown-item" href="/services/{{ service.id }}/edit"><i class="fa fa-pencil-square-o"></i>Edit</a>
                 <form action="/services/{{ service.id }}?_method=DELETE" method="POST">
                       {{ csrfField() }}
-              <button class="button is-danger is-outlined">
+              <button  class="btn btn-danger d-block float-left">
                 <span>DELETE</span>
-                <span class="icon is-small">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                </span>
               </button>
                     </form>
                   </div>
