@@ -1,0 +1,39 @@
+import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+
+export default class AddAuthors extends BaseSchema {
+  protected tableName = 'add_authors'
+
+  public async up () {
+    this.schema.createTable(this.tableName, (table) => {
+      table.increments('id')
+
+      /**
+       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       */
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
+    })
+  }
+
+  public async down () {
+    this.schema.dropTable(this.tableName)
+  }
+}
+
+import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+
+export default class AddAdminIdToServices extends BaseSchema {
+  protected tableName = 'services'
+
+  public async up () {
+    this.schema.alterTable(this.tableName, (table) => {
+      table.integer('admin_id').references('admins.id')
+    })
+  }
+
+  public async down () {
+    this.schema.alterTable(this.tableName, (table) => {
+      table.dropColumn('admin_id')
+    })
+  }
+}

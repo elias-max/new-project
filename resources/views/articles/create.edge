@@ -1,0 +1,20 @@
+@layout('layouts/main')
+@set('title', 'Articles')
+@set('breadcrumbMainTitle', 'Articles')
+@set('breadcrumbSubTitle', 'New Article')
+
+@section('body')
+<hr>
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Add New  Article</h3>
+        </div>
+        <form action="{{ route('articles.store') }}" method="POST">
+          @include('articles/articleform')
+        </form>
+      </div>
+    </div>
+  </div>
+@end

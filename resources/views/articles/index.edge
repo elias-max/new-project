@@ -1,0 +1,37 @@
+@layout('layouts/main')
+@set('title', 'Articles')
+@set('breadcrumbMainTitle', 'Articles')
+@set('breadcrumbSubTitle', 'All')
+
+@section('body')
+<hr>
+<div class="card-body">
+  <a href="/articles/create" class="btn btn-primary"> Post New  Article</a>
+  {{--  hide for now  --}}
+</div>
+<h1>👋 Hello World!</h1>
+
+<div class="container">
+  <div class="wrapper">
+    <img src="https://drive.google.com/uc?export=download&id=1YV0t5Ual1NJ_Mmw6kGqrygRhqWnkOxz1">
+    <div class="imageInfo">
+      </div>
+    </div>
+  </div>
+<div class="row row-wrap">
+  @each(article in articles)
+  <div class="column column-50">
+    <aside class="card">
+      <h3>
+        <a class="item" href="/articles/{{ article.id }}/edit">Edit</a>
+          {{ article.title }}
+        </a>
+      </h3>
+      <p>{{ article.content}}</p>
+      <p>{{ article.author}}</p>
+      <p>{{article.publishDate}}</p>
+    </aside>
+  </div>
+  @endeach
+</div>
+@end

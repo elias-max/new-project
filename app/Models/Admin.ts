@@ -3,6 +3,7 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Member from './Member'
 import  Service from './Service'
+import  Article from './Article'
 
 export default class Admin extends BaseModel {
   @hasMany(() => Member)
@@ -10,7 +11,9 @@ export default class Admin extends BaseModel {
 
   @hasMany(() => Service)
   public services: HasMany<typeof Service>
-  
+
+  @hasMany(() => Article)
+  public articles: HasMany<typeof  Article>
   
   @column({ isPrimary: true })
   public id: number
