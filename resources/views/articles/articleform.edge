@@ -5,13 +5,27 @@
     <div class="col-md-12 col-lg-8">
        <div class="form-group">
         <label for="name">Title</label>
-           <input type="text" class="form-control" id="title" placeholder="eg jesus is my everything"  name="title">
+           <input type="text" class="form-control" id="title" placeholder="eg jesus is my everything"  name="title" autocomplete="off"
+           value="{{ flashMessages.get('title', '') || ''}}"
+           data-flash-value="{{ flashMessages.get('title', '') || ''}}" 
+           data-has-error="{{ flashMessages.has('errors.title') }}"
+           / >
+           @if(flashMessages.has('errors.title'))
+           <div class="invalid-feedback"> {{ flashMessages.get('errors.title') }} </div>
+         @end
        </div>
 
       <div class="form-group">
          <label for="name">Author name</label>
-            <input type="text" class="form-control" id="name" placeholder="eg ibisi">
+            <input type="text" class="form-control" id="author" placeholder="eg ibisi"  name="author" autocomplete="off"
+            value="{{ flashMessages.get('author', '') || ''}}"
+            data-flash-value="{{ flashMessages.get('author', '') || ''}}" 
+            data-has-error="{{ flashMessages.has('errors.author') }}"
+            / >
              <small class="form-text text-muted">author of an article</small>
+             @if(flashMessages.has('errors.author'))
+             <div class="invalid-feedback"> {{ flashMessages.get('errors.author') }} </div>
+           @end
       </div>
       <label for="birthday">Publish Date</label>
       <input type="date" id="publishDate" name="publishDate">
@@ -25,11 +39,11 @@
           <label class="col-md-4 control-label" for="article_categories">Categories</label>
           <div class="col-md-6">
             <select id="article_categories" name="article_categories" class="form-control">
-              <option value="1">sunday school</option>
-            <option value="2">main service</option>
-            <option value="2">seminar</option>
-            <option value="2">general meetings</option>
-            <option value="2">kids service</option>
+              <option value="sunday school">sunday school</option>
+            <option value="main service">main service</option>
+            <option value="seminar">seminar</option>
+            <option value="general meetings">general meetings</option>
+            <option value="kids service">kids service</option>
             </select>
           </div>
         </div>

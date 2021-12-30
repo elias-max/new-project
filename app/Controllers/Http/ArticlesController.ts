@@ -7,23 +7,28 @@ export default class ArticlesController {
     return view.render('articles/index', { articles: articles })
   }
 
-  public async create({view}) {
+  public async create({view}){
     return view.render('articles/create')
   }
 
   public async store({ response, request, auth}) {
     await request.validate(ArticleValidator)
     const params = request.body()
+
     const currentAdmin= auth.use('web').user!
     try{
       await Article.create({
         title: params.title,
         author: params.author,
+        adminId: currentAdmin.id,
         content: params.content,
-        adminId: currentAdmin.id
+        publishDate: params. publishDate,
+        categories: params.categories
+  
       })  
-    }catch (error) {
-        console.log(error)
+      //console.log(params)
+    }catch {
+       
       response.redirect().back() // NEED TO DO MORE HERE
     }
     response.redirect().toRoute('ArticlesController.index')

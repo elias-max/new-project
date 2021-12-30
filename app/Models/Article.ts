@@ -24,6 +24,9 @@ export default class Article extends BaseModel {
   @column.dateTime()
   public publishDate: DateTime
 
+  @column.dateTime()
+  public categories: DateTime
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

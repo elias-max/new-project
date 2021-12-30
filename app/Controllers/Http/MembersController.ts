@@ -24,6 +24,7 @@ export default class MembersController {
         adminId: currentAdmin.id,
         phonenumber: params.phonenumber
       })
+      console.log(params)
     }catch{
       response.redirect().back() // NEED TO DO MORE HERE
     }
