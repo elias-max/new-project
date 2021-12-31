@@ -40,12 +40,7 @@
                     <a class="dropdown-item" href="/services/{{ service.id }}/edit">Edit</a>
                 <form action="/services/{{ service.id }}?_method=DELETE" method="POST">
                       {{ csrfField() }}
-              <button class="button is-danger is-outlined">
-                <span>DELETE</span>
-                <span class="icon is-small">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                </span>
-              </button>
+                      <button class="btn btn-outline-danger delete_row">remove</button>
                     </form>
                   </div>
                 </div>

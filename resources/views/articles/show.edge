@@ -1,0 +1,31 @@
+@layout('layouts/main')
+@set('title', 'Articles')
+@set('breadcrumbMainTitle', 'Articles')
+@set('breadcrumbSubTitle', 'View Article')
+
+@section('body')
+<section class="py-8">
+  <div class="card-body">
+    <a href="/articles" class="btn btn-primary">All Article </a>
+  </div>
+  <div class="container px-5">
+      <div class="card border-0 shadow rounded-3 overflow-hidden">
+        <a class="btn btn-outline-success" href="/articles/{{ article.id }}/edit">Edit</a>
+        <h5 class="fw-bolder fs-5 mb-2 sm">{{ article. publishDate}}</h5>
+          <div class="card-body p-0">
+              <div class="row gx-0">
+                  <div class="col-lg-6 col-xl-5 py-lg-5">
+                      <div class="p-4 p-md-5">
+                          <div class="badge bg-primary bg-gradient rounded-pill mb-6">Article News</div>
+                          <div class="h2 fw-bolder">{{ article. title}}</div>
+                          <p>{{ article.content}}</p>
+                          <p>{{ article.categories}}</p>
+                          <a class="stretched-link text-decoration-none" href="#!">Read more<i class="bi bi-arrow-right"></i></a> 
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</section>
+@end

@@ -1,0 +1,20 @@
+@layout('layouts/main')
+@set('title', 'Articles')
+@set('breadcrumbMainTitle', 'Articles')
+@set('breadcrumbSubTitle', 'Edit  Article')
+
+@section('body')
+<hr>
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Edit  Article</h3>
+        </div>
+        <form action="/articles/{{ article.id }}?_method=PATCH" method="POST">
+          @include('articles/articleform')
+        </form>
+      </div>
+    </div>
+  </div>
+@end

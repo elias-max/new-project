@@ -15,6 +15,8 @@ export default class ArticlesController {
     await request.validate(ArticleValidator)
     const params = request.body()
 
+  //console.log(params)
+
     const currentAdmin= auth.use('web').user!
     try{
       await Article.create({
@@ -22,12 +24,13 @@ export default class ArticlesController {
         author: params.author,
         adminId: currentAdmin.id,
         content: params.content,
-        publishDate: params. publishDate,
+        publishDate: params.publishDate,
         categories: params.categories
   
       })  
-      //console.log(params)
-    }catch {
+      
+    }catch(e){
+      console.log(e)
        
       response.redirect().back() // NEED TO DO MORE HERE
     }
@@ -40,9 +43,37 @@ export default class ArticlesController {
     return view.render('articles/show', { article: article })
   }
 
-  public async edit({}: HttpContextContract) {}
+  public async edit({view,params}) {
+    const article = await Article.findOrFail(params.id )
+    return view.render('articles/edit', { 
+      articles: article})
+  }
 
-  public async update({}: HttpContextContract) {}
+  public async update({response,request}) {
+    await request.validate(ArticleValidator)
+    const params = request.body()
+    const article = await Article.findOrFail(request.param('id'))
 
-  public async destroy({}: HttpContextContract) {}
+    try{
+      await article.merge({
+        title: params.title,
+        author: params.author,
+        content: params.content,
+        publishDate: params.publishDate
+          }).save()
+        }catch  (error) {
+          console.log(error)
+          response.redirect().back() // NEED TO DO MORE HERE
+        }
+        response.redirect().toRoute('ArticlesController.index')     
+  }
+
+  public async destroy({response,session,params}){
+    const article = await Article.find(params.id)
+    await article?.delete()
+
+    session.flash({ message: 'Service has been removed' })
+    return response.redirect('/articles')
+  }
 }
+

@@ -2,49 +2,41 @@
 @set('title', 'Articles')
 @set('breadcrumbMainTitle', 'Articles')
 @set('breadcrumbSubTitle', 'All')
-
 @section('body')
-<hr>
-<div class="card-body">
-  <a href="/articles/create" class="btn btn-primary"> Post New  Article</a>
-  {{--  hide for now  --}}
-</div>
-<h1>👋 Hello World!</h1>
-<header class="py-5 bg-light border-bottom mb-4">
-  <div class="container">
-      <div class="text-center my-5">
-          <h1 class="fw-bolder">Welcome to artilce Home!</h1>
-          <p class="lead mb-0">facim church artiles  homepage</p>
+      <hr>
+      <div class="card-body">
+        <a href="/articles/create" class="btn btn-primary"> Post New  Article</a>
+        {{--  hide for now  --}}
       </div>
-  </div>
-</header>
-<!-- Page content-->
-<div class="container">
-  <div class="row">
-      <!-- Blog entries-->
-      <div class="col-lg-12">
-          <!-- Featured blog post-->
-          <div class="card mb-4">
-              <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-              @each(article in articles)
-              <div class="card-body">
-                  <div class="small text-muted">
-                    <p>{{ article. publishDate}}</p>
-                  </div>
-                  <h2 class="card-title">{{ article. title}}</h2>
-                  <p class="card-text">{{ article.content}}</p>
-                  <a class="btn btn-primary" href="#!">Read more →</a>
-              </div>
+      <h1>👋 Hello wellcome to our daily Article!</h1>
+      <hr>
+      <section class="py-8">
+        @each(article in articles)
+        <div class="container px-5">
+            <div class="card border-0 shadow rounded-3 overflow-hidden">
+              <a class="btn btn-outline-success" href="/articles/{{ article.id }}">View</a>
+              <a class="btn btn-outline-success" href="/articles/{{ article.id }}/edit">Edit</a>
+              <form action="/articles/{{ article.id }}?_method=DELETE" method="POST">
+                {{ csrfField() }}
+                <button class="btn btn-outline-danger delete_row">delete</button>
+              </form>
+              <h5 class="fw-bolder fs-5 mb-2 sm">{{ article. publishDate}}</h5>
+                <div class="card-body p-0">
+                    <div class="row gx-0">
+                        <div class="col-lg-6 col-xl-5 py-lg-5">
+                            <div class="p-4 p-md-5">
+                                <div class="badge bg-primary bg-gradient rounded-pill mb-6">Article News</div>
+                                <div class="h2 fw-bolder">{{ article. title}}</div>
+                                <p>{{ article.content}}</p>
+                                <p>{{ article.categories}}</p>
+                                <a class="stretched-link text-decoration-none" href="#!">Read more<i class="bi bi-arrow-right"></i></a> 
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
-          <div class="card mb-4">
-            <div class="card-header">{{artile.categories}}</div>
-            @endeach
-          <!-- Side widget-->
-          <div class="card mb-4">
-              <div class="card-header">Side Widget</div>
-              <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-          </div>
-      </div>
-  </div>
-</div>
+        @end
+    </section>
 @end

@@ -10,22 +10,22 @@ export default class Article extends BaseModel {
   public id: number
 
   @column()
- public title: String
+ public title: string
 
  @column()
- public author: String
+ public content: string
 
  @column()
   public adminId: number
 
-  @column()
- public content: String
-
-  @column.dateTime()
+  @column.date()
   public publishDate: DateTime
+  
+  @column()
+ public author: string
 
-  @column.dateTime()
-  public categories: DateTime
+  @column()
+  public categories: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
