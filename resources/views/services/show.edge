@@ -1,17 +1,15 @@
 @layout('layouts/main')
-@set('title', 'Members')
-@set('breadcrumbMainTitle', 'Members')
-@set('breadcrumbSubTitle', 'All')
+@set('title', 'Services')
+@set('breadcrumbMainTitle', 'Services')
+@set('breadcrumbSubTitle', 'View')
 
 @section('body')
-
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-          <a href="/members/create" class="btn btn-primary">New Member</a>
-          {{--  hide for now  --}}
+          <a href="/members" class="btn btn-primary">All Services</a>
         </div>
 
       </div>
@@ -19,7 +17,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Members</h3>
+          <h3 class="card-title">{{ service.fullservice() }}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -27,39 +25,32 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th style="width: 10px">#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>SN</th>
+                <th>Service Name </th>
+                <th>Duration</th>
+                <th>Location</th>
                 <th>Added By</th>
-                <th>Phone Number</th>
                 <th style="width: 40px">Label</th>
               </tr>
             </thead>
             <tbody>
-              @each(member in members)
                 <tr>
-                  <td>{{ members.indexOf(member) + 1 }}</td>
-                  <td>{{ member.firstName }}</td>
-                  <td>{{ member.lastName }}</td>
-                  <td>{{ member.admin.name || 'Not Set' }}</td>
-                  <td>{{ member.phonenumber || 'Not Set' }}</td>
+                  <td>{{ service.id }}</td>
+                  <td>{{ service.serviceName }}</td>
+                  <td>{{ service.serviceDuration }}</td>
+                  <td>{{ service.serviceLocation }}</td>
+                  <td>{{ await service.getAdmin() || 'Not Set' }}</td>
                   <td>
                     <div class="dropdown">
                       <a class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/members/{{ member.id }}">View</a>
-                        <a class="dropdown-item" href="/members/{{ member.id }}/edit">Edit</a>
-                        <form action="/members/{{ member.id }}?_method=DELETE" method="POST">
-                          {{ csrfField() }}
-                           <button type="submit" class="btn btn-danger d-block float-left">Delete</button>
-                        </form>
+                        <a class="dropdown-item" href="/services/{{ service.id }}/edit">Edit</a>
                       </div>
                     </div>
                   </td>
                 </tr>
-              @end
             </tbody>
           </table>
           </div>

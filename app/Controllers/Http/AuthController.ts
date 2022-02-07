@@ -54,7 +54,8 @@ export default class AuthController {
     try {
       await auth.use('web').attempt(email, password, rememberMeToken)
       response.redirect('/')
-    } catch {
+    } catch (error)  {
+      console.log(error)           
       return view.render('auth/create',
         {
           invalid: true,

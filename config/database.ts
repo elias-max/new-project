@@ -6,39 +6,7 @@
  */
 
 import Env from '@ioc:Adonis/Core/Env'
-import Application from '@ioc:Adonis/Core/Application'
 import { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
-
-const path = require('path')
-
-let dbPath = Application.tmpPath('db.sqlite3')
-
-if (Env.get('NODE_ENV') == 'production'){
-  const osAppDataPath = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Preferences' : process.env.HOME + "/.local/share")
-  const fs = require("fs");
-  const appDataPath = path.join(osAppDataPath, Application.appName)
-    
-  fs.access(appDataPath, (error) => {
-    // To check if the given directory 
-    // already exists or not
-    if (error) {
-      // If current directory does not exist
-      // then create it
-      fs.mkdir(appDataPath, (error) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("App Data Path Created");
-        }
-      });
-    } else {
-      
-      console.log("App Data Path already exists !!");
-    }
-  });
-  
-  dbPath = path.join(appDataPath, Env.get('DB_NAME'))
-}
 
 const databaseConfig: DatabaseConfig = {
   /*
@@ -56,24 +24,27 @@ const databaseConfig: DatabaseConfig = {
   connections: {
     /*
     |--------------------------------------------------------------------------
-    | SQLite
+    | PostgreSQL config
     |--------------------------------------------------------------------------
     |
-    | Configuration for the SQLite database.  Make sure to install the driver
+    | Configuration for PostgreSQL database. Make sure to install the driver
     | from npm when using this connection
     |
-    | npm i sqlite3
+    | npm i pg
     |
     */
-    sqlite: {
-      client: 'sqlite',
+    pg: {
+      client: 'pg',
       connection: {
-        filename: dbPath,
+        host: Env.get('PG_HOST'),
+        port: Env.get('PG_PORT'),
+        user: Env.get('PG_USER'),
+        password: Env.get('PG_PASSWORD', ''),
+        database: Env.get('PG_DB_NAME'),
       },
       migrations: {
         naturalSort: true,
       },
-      useNullAsDefault: true,
       healthCheck: false,
       debug: false,
     },

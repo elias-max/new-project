@@ -59,4 +59,11 @@ export default class MembersController {
 
     response.redirect().toRoute('MembersController.index')
   }
+  public async destroy({ response, session, params }) {
+    const member = await Member.find(params.id)
+    await member?.delete()
+
+    session.flash({ message: 'Member has been removed' })
+    return response.redirect('/members')
+  }
 }

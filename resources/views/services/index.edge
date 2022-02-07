@@ -1,0 +1,60 @@
+@layout('layouts/main')
+@set('title', 'Services')
+@set('breadcrumbMainTitle', 'Services')
+@set('breadcrumbSubTitle', 'All')
+
+@section('body')
+  <!-- /.card-header -->
+  <div class="card-body">
+    <a href="/services/create" class="btn btn-primary">New Service</a>
+    {{--  hide for now  --}}
+  </div>
+<div class="box">
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Service Name </th>
+          <th>Duration</th>
+          <th>Location</th>
+          <th>Added By</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(service in services)
+          <tr>
+            <tr>
+              <td>{{ services.indexOf(service) + 1 }}</td>
+              <td>{{ service.serviceName }}</td>
+              <td>{{ service.serviceDuration }}</td>
+              <td>{{ service.serviceLocation}}</td>
+              <td>{{ service.admin.name || 'Not Set' }}</td>
+              <td>
+                <div class="dropdown">
+                  <a class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/services/{{ service.id }}">View</a>
+                    <a class="dropdown-item" href="/services/{{ service.id }}/edit"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                <form action="/services/{{ service.id }}?_method=DELETE" method="POST">
+                      {{ csrfField() }}
+              <button  class="btn btn-danger d-block float-left">
+                <span>DELETE</span>
+              </button>
+                    </form>
+                  </div>
+                </div>
+              </td>
+          </tr>
+  </div>
+        @endeach
+      </tbody>
+    </table>
+</div>
+@end
+
+  
+
+

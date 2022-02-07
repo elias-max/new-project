@@ -6,7 +6,7 @@ export default class CreateMemberValidator {
 
   public schema = schema.create({
     firstName: schema.string(),
-    lastName: schema.string()
+    lastName: schema.string(),
   })
 
   public messages = {
