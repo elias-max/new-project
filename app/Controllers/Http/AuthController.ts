@@ -14,7 +14,7 @@ export default class AuthController {
     await request.validate(LoginValidator)
     const params = request.body()
 
-    try{
+    try {
 
       // create the admin/user
       await Admin.create({
