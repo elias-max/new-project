@@ -13,14 +13,13 @@ export default class Service extends BaseModel {
   public serviceName: string
 
   @column()
-  public serviceDuration :string
+  public serviceDuration: string
 
   @column()
-  public serviceLocation :string
+  public serviceLocation: string
 
   @column()
   public adminId: number
- 
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -28,15 +27,13 @@ export default class Service extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-public async getAdmin(){
-  const admin =  await Admin.findOrFail(this.adminId)
-  return admin.name
-}
+  public async getAdmin() {
+    const admin = await Admin.findOrFail(this.adminId)
+    return admin.name
+  }
 
-
-@computed()
-  public fullservice(){
-    return `${this. serviceName} ${this.serviceDuration}`
+  @computed()
+  public fullservice() {
+    return `${this.serviceName} ${this.serviceDuration}`
   }
 }
-

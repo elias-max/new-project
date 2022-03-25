@@ -26,15 +26,14 @@ export default class Member extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
-  
-  public async getAdmin(){
-    const admin =  await Admin.findOrFail(this.adminId)
+
+  public async getAdmin() {
+    const admin = await Admin.findOrFail(this.adminId)
     return admin.name
   }
-  
+
   @computed()
-  public fullname(){
+  public fullname() {
     return `${this.firstName} ${this.lastName}`
   }
-
 }
