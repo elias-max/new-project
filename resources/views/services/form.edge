@@ -4,8 +4,8 @@
     <label for="name"> Service Name</label>
     <input type="text" class="form-control"
       id="serviceName" placeholder="e.g morning prayer" name="serviceName" autocomplete="off"
-      data-value="{{ service ? service.serviceName : null }}" 
-      data-flash-value="{{ flashMessages.get('serviceName', '') || ''}}" 
+      data-value="{{ service ? service.serviceName : null }}"
+      data-flash-value="{{ flashMessages.get('serviceName', '') || ''}}"
       data-has-error="{{ flashMessages.has('errors.serviceName') }}"
     >
     @if(flashMessages.has('errors.serviceName'))
@@ -16,7 +16,6 @@
   <div class="form-group">
     <label for="name">Duration</label>
     <input type="time" class="form-control"
-    <input type="text" class="form-control"
       id="serviceDuration" placeholder="e.g 8:30" name="serviceDuration" autocomplete="off"
     >
   </div>

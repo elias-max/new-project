@@ -1,0 +1,23 @@
+  {{ csrfField() }}
+  <div class="card-body">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control"
+        id="name" placeholder="e.g food" name="name" autocomplete="off"
+        data-value="{{ expensetype ? expensetype.name : null }}"
+        data-flash-value="{{ flashMessages.get('name', '') || ''}}"
+        data-has-error="{{ flashMessages.has('errors.name') }}"
+      >
+      @if(flashMessages.has('errors.name'))
+        <div class="invalid-feedback"> {{ flashMessages.get('errors.name') }} </div>
+      @end
+    </div>
+</div>
+<div class="card-footer">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+<!-- /.card-body -->
+
+
+
+

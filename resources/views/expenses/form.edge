@@ -1,0 +1,41 @@
+{{ csrfField() }}
+<div class="card-body">
+  <div class="form-group">
+  <div class="form-group mt-5">
+    <select class="description" multiple aria-label="Default select example" data-live-search="true">
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+      <option value="4">Four</option>
+    </select>
+
+  </div>
+  <label for="name">description</label>
+  <input type="text" class="form-control"
+    id="description" placeholder="e.g Elias" name="expenseType" autocomplete="off"
+    data-value="{{ description ? description.description : null }}"
+    data-flash-value="{{ flashMessages.get('description', '') || ''}}"
+    data-has-error="{{ flashMessages.has('errors.description') }}"
+  >
+  @if(flashMessages.has('errors.description'))
+    <div class="invalid-feedback"> {{ flashMessages.get('errors.description') }} </div>
+  @end
+</div>
+  <div class="form-group">
+    <label for="name">date</label>
+    <input type="date" class="form-control"
+      id="date" placeholder="e.g 30-03-2022" name="date" autocomplete="off"
+    >
+  </div>
+  <div class="form-group">
+    <label for="name">amount</label>
+    <input type="number" class="form-control"
+      id="amount" placeholder="e.g 900900" name="amount" autocomplete="off"
+    >
+  </div>
+</div>
+<!-- /.card-body -->
+
+<div class="card-footer">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>

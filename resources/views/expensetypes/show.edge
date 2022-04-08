@@ -1,0 +1,48 @@
+@layout('layouts/main')
+@set('title', 'ExpensesType')
+@set('breadcrumbMainTitle', 'Expenses Type')
+@set('breadcrumbSubTitle', 'view')
+@section('body')
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <!-- /.card-header -->
+      <div class="card-body">
+        <a href="/expensetypes/create" class="btn btn-primary">New Expense-Type </a>
+        {{--  hide for now  --}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h6>  view Expenses Type</h6>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Added By</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ expenseType.id }}</td>
+              <td>{{ expenseType.name }}</td>
+              <td>{{ expenseType.adminId }}</td>
+              <td>
+                <a class="btn btn-success"href="/expensetypes/{{ expenseType.id }}/edit"><i class="fas fa-edit"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+@end

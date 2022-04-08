@@ -1,0 +1,40 @@
+<div class="card-body">
+  <div class="table-responsive">
+    <table class=" table table-bordered table-striped table-hover datatable datatable-Expense">
+          <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Name</th>
+                <th>Added By</th>
+                <th style="width: 0px">Label</th>
+              </tr>
+          </thead>
+          <tbody>
+                  <tr>
+                      <td>{{ expensetype.name }}</td>
+                      <td>{{ expensetype.adminId }}</td>
+                    <td>
+                        <a class="btn btn-xs btn-primary" href="/expensetypes/{{ expensetype.id }}">
+                          show
+                        </a>
+                       <a class="btn btn-xs btn-info" href="/expensetypes/{{ expensetype.id }}/edit">
+                        Edit
+                        </a>
+                          <form action="/expensetypes/{{ expensetype.id }}?_method=DELETE" method="POST">
+                             {{ csrfField() }}
+                            <input type="submit" class="btn btn-xs btn-danger">Delete</button>
+                           </form>
+                      </td>
+                  </tr>
+              @end
+          </tbody>
+      </table>
+  </div>
+</div>
+</div>
+</div>
+</a>
+<form action="/expensetypes/{{ expensetype.id }}?_method=DELETE" method="POST">
+  {{ csrfField() }}
+ <input type="submit"class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+</form>

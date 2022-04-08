@@ -10,7 +10,6 @@ export default class MembersController {
   public async create({ view }) {
     return view.render('members/create')
   }
-
   public async store({ response, request, auth }) {
     await request.validate(CreateMemberValidator)
     const params = request.body()

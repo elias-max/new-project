@@ -3,10 +3,18 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Member from './Member'
 import Service from './Service'
+import Expense from './Expense'
+import ExpensesType from './ExpensesType'
 
 export default class Admin extends BaseModel {
   @hasMany(() => Member)
   public members: HasMany<typeof Member>
+
+  @hasMany(() => ExpensesType)
+  public expensetypes: HasMany<typeof ExpensesType>
+
+  @hasMany(() => Expense)
+  public expenses: HasMany<typeof Expense>
 
   @hasMany(() => Service)
   public services: HasMany<typeof Service>
