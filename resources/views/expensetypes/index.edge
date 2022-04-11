@@ -16,18 +16,20 @@
 </div>
 <div class="card">
   <div class="card-header">
-    <h6> List of Expenses Type</h6>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <table class="table table-bordered">
-          <thead>
+    <h6 class="font-bold mt-4 mb-3 h5">list of Expenses</h6>
+  </div><div class="container mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Added By</th>
-              <th scope="col">Actions</th>
+              <th scope="col">View</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -38,8 +40,17 @@
               <td>{{ expensetype.adminId }}</td>
               <td>
                 <a class="btn btn-primary"href="/expensetypes/{{ expensetype.id }}"><i class="far fa-eye"></i></a>
+              </td>
+              <td>
                 <a class="btn btn-success"href="/expensetypes/{{ expensetype.id }}/edit"><i class="fas fa-edit"></i></a>
-                <a href="/expenseTypes/{{expensetype.id}}?_method=DELETE" method="POST" class="btn btn-danger">delete</a>
+              </td>
+              <td>
+              <form action="/expensetypes/{{ expensetype.id }}?_method=DELETE"method="POST">
+                {{ csrfField() }}
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+
+              </form>
               </td>
             </tr>
             @end

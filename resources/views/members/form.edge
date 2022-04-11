@@ -4,8 +4,8 @@
       <label for="name">FirstName</label>
       <input type="text" class="form-control"
         id="firstName" placeholder="e.g Elias" name="firstName" autocomplete="off"
-        data-value="{{ member ? member.firstName : null }}" 
-        data-flash-value="{{ flashMessages.get('firstName', '') || ''}}" 
+        data-value="{{ member ? member.firstName : null }}"
+        data-flash-value="{{ flashMessages.get('firstName', '') || ''}}"
         data-has-error="{{ flashMessages.has('errors.firstName') }}"
       >
       @if(flashMessages.has('errors.firstName'))
@@ -36,5 +36,5 @@
   <!-- /.card-body -->
 
   <div class="card-footer">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Create</button>
   </div>

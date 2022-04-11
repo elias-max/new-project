@@ -1,0 +1,44 @@
+@layout('layouts/main')
+@set('title', 'Expenses')
+@set('breadcrumbMainTitle', 'Expenses')
+@set('breadcrumbSubTitle', 'All')
+@section('body')
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <!-- /.card-header -->
+      <div class="card-body">
+        <a href="/expenses/create" class="btn btn-primary">New Expense </a>
+        {{--  hide for now  --}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h6 class="font-bold mt-4 mb-3 h5">list of Expenses</h6>
+  </div><div class="container mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Expense Types</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Added By</th>
+                <th scope="col">View</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+ @end

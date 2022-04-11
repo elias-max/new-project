@@ -1,0 +1,19 @@
+@layout('layouts/main')
+@set('title', 'Expenses')
+@set('breadcrumbMainTitle', 'Expenses')
+@set('breadcrumbSubTitle', 'New Expense')
+
+@section('body')
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">New Expense</h3>
+        </div>
+        <form action="{{ route('expenses.store') }}" method="POST">
+          @include('expenses/form')
+        </form>
+      </div>
+    </div>
+  </div>
+ @end
