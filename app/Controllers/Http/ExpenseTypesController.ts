@@ -33,7 +33,7 @@ export default class ExpenseTypesController {
     return view.render('expensetypes/show', { expenseType: expenseType })
   }
 
-  public async edit({ request, response, view }) {
+  public async edit({ request, view }) {
     const expenseType = await ExpensesType.findOrFail(request.param('id'))
     return view.render('expensetypes/edit', { expenseType: expenseType })
   }

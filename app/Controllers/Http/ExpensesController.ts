@@ -1,39 +1,39 @@
 import Expense from 'App/Models/Expense'
+import ExpensesType from 'App/Models/ExpensesType'
 import CreateExpenseValidator from 'App/Validators/CreateExpenseValidator'
 
 export default class ExpensesController {
   public async index({ view }) {
-    const expenses = await Expense.query().preload('admin')
+    const expenses = await Expense.all()
     return view.render('expenses/index', { expenses: expenses })
   }
 
   public async create({ view }) {
-    return view.render('expenses/create')
+    const expensesTypes = await ExpensesType.query().preload('admin')
+    /* console.log(expensesTypes)*/
+    return view.render('expenses/create', { expensesTypes: expensesTypes })
   }
 
-  public async store({ response, request, auth }) {
+  public async store({ response, request }) {
     await request.validate(CreateExpenseValidator)
     const params = request.body()
-
-    const currentAdmin = auth.use('web').user!
-
     try {
       await Expense.create({
-        expenseType: params.expenseType,
+        expensestypeId: params.expensestypeId,
         description: params.description,
         amount: params.amount,
-        adminId: currentAdmin.id,
         date: params.date,
       })
-    } catch {
+    } catch (error) {
+      console.log(error)
       response.redirect().back() // NEED TO DO MORE HERE
     }
 
-    response.redirect().toRoute('MembersController.index')
+    response.redirect().toRoute('ExpensesController.index')
   }
   public async show({ view, request }) {
     const expense = await Expense.findOrFail(request.param('id'))
-    return view.render('members/show', { expense: expense })
+    return view.render('expenses/show', { expense: expense })
   }
 
   public async edit({ view, request }) {
@@ -51,10 +51,9 @@ export default class ExpensesController {
     try {
       await expense
         .merge({
-          expenseType: params.expenseType,
+          expensetype: params.expensetype,
           description: params.description,
           amount: params.amount,
-          adminId: currentAdmin.id,
           date: params.date,
         })
         .save()

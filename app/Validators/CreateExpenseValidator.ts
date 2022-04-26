@@ -24,7 +24,7 @@ export default class CreateExpenseValidator {
    *    ```
    */
   public schema = schema.create({
-    expenseType: schema.string(),
+    expensestypeId: schema.number(),
     description: schema.string(),
   })
 

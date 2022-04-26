@@ -1,11 +1,17 @@
 {{ csrfField() }}
 <div class="container">
-  <form>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group purple-border">
           <label for="last">expense Type</label>
-          <input type="text" class="form-control" placeholder="" id="last">
+          <select type="text" class="form-control" name="expensestypeId">
+          @each(expenseType in expensesTypes)
+          <option value="{{expenseType.id}}">{{expenseType.name}}</option>
+          @end
+        </select>
+        <span class="input-group-addon">
+            <i class="fa fa-refresh fa-spin"></i>
+        </span>
         </div>
       </div>
     </div>
@@ -14,7 +20,7 @@
 
       <div class="col-md-8">
         <div class="form-group">
-          <label for="exampleFormControlTextarea4">Description</label>
+          <label for="exampleFormControlTextarea2">Description</label>
           <textarea class="form-control"id="description" placeholder="e.g  food Expeses" name="description" autocomplete="off" rows="4">
           </textarea>
         </div>
@@ -33,7 +39,9 @@
             id="amount" placeholder="e.g 900900" name="amount" autocomplete="off"
           >
         </div>
-
+        @if(flashMessages.has('errors.amount'))
+        <div class="invalid-feedback"> {{ flashMessages.get('errors.amount') }} </div>
+       @end
 
       </div>
       <!--  col-md-6   -->
@@ -53,7 +61,6 @@
     <div class="d">
       <button type="submit" class="btn btn-primary">Submit</button>
      </div>
-  </form>
 </div>
 
 

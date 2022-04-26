@@ -29,12 +29,37 @@
                 <th scope="col">Description</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Date</th>
-                <th scope="col">Added By</th>
                 <th scope="col">View</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
             </thead>
+            <tbody>
+              @each(expense in expenses)
+              <tr>
+                <td>{{ expenses.indexOf(expense) + 1 }}</td>
+                <td>{{ await expense.expenseTypeName()}}</td>
+                <td>{{ expense.description }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.date }}</td>
+                <td>
+                  <a class="btn btn-primary"href="/expenses/{{ expense.id }}"><i class="far fa-eye"></i></a>
+                </td>
+                <td>
+                  <a class="btn btn-success"href="/expenses/{{ expense.id }}/edit"><i class="fas fa-edit"></i></a>
+                </td>
+                <td>
+                <form action="/expenses/{{ expense.id }}?_method=DELETE"method="POST">
+                  {{ csrfField() }}
+                  <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+
+                </form>
+                </td>
+              </tr>
+              @end
+            </tbody>
+          </table>
 
         </table>
       </div>
