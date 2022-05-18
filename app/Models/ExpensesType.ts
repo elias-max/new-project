@@ -7,7 +7,6 @@ import {
   computed,
   hasMany,
   HasMany,
-
 } from '@ioc:Adonis/Lucid/Orm'
 import Admin from './Admin'
 import Expense from './Expense'

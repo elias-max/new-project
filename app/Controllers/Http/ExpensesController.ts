@@ -51,7 +51,7 @@ export default class ExpensesController {
     try {
       await expense
         .merge({
-          expensetype: params.expensetype,
+          expensestypeId: params.expensestypeId,
           description: params.description,
           amount: params.amount,
           date: params.date,
